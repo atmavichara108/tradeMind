@@ -12,7 +12,7 @@ tags:
 Тренировка глаза. Распознавание уровней без интерпретации.
 
 ## Протокол
-1. Открыть TradingView, любая пара (BTC/ETH/то что наставник упоминал) https://www.tradingview.com/chart/Lx68UfeB/?symbol=BYBIT%3ABTCUSDT# 2026-05-07
+1. Открыть TradingView, любая пара (BTC/ETH/то что наставник упоминал) https://www.tradingview.com/chart/Lx68UfeB/?symbol=BYBIT%3ABTCUSDT# 
 2. ТФ 1D или 4H
 3. Смотреть 1 минуту, без разметки
 4. Найти один уровень, на котором цена останавливалась/отбивалась минимум 3 раза
