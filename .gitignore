@@ -3,3 +3,6 @@ obsidian/cache
 .trash/
 obsidian-proxy.pac
 .smart-env/
+
+02_Mentor/Import_*
+02_Mentor/parse_export.py
