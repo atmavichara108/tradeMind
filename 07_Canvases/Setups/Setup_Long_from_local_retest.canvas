@@ -1,0 +1,15 @@
+{
+  "nodes": [
+    {"id":"n1","type":"file","file":"05_Setups/Setup_Long_from_local_retest.md","x":0,"y":0,"width":420,"height":360},
+    {"id":"n2","type":"file","file":"02_Mentor/Transcripts/ExportParsed/2026-03/2026-03-27.md","x":480,"y":0,"width":420,"height":360},
+    {"id":"n3","type":"file","file":"06_Playbooks/Playbook_Stop_behind_local_low.md","x":0,"y":420,"width":420,"height":300},
+    {"id":"n4","type":"file","file":"03_Glossary/Лоу.md","x":480,"y":420,"width":420,"height":300},
+    {"id":"n5","type":"file","file":"03_Glossary/БПЦ.md","x":960,"y":420,"width":420,"height":300}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"n1","toNode":"n2"},
+    {"id":"e2","fromNode":"n1","toNode":"n3"},
+    {"id":"e3","fromNode":"n3","toNode":"n4"},
+    {"id":"e4","fromNode":"n1","toNode":"n5"}
+  ]
+}
