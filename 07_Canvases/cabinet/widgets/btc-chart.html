@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BTC Chart Widget</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #0b0f14;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: 100vw;
+      height: 100vh;
+      background: #0b0f14;
+    }
+
+    .tradingview-widget-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .tradingview-widget-container__widget {
+      width: 100%;
+      height: calc(100% - 32px);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="tradingview-widget-container">
+      <div id="tradingview_btc_chart" class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright">
+        <a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BYBIT" rel="noopener nofollow" target="_blank">
+          <span style="color:#9db2ce;font-family:sans-serif;font-size:12px;">BTCUSDT chart by TradingView</span>
+        </a>
+      </div>
+      <script src="https://s3.tradingview.com/tv.js"></script>
+      <script>
+        new TradingView.widget({
+          "container_id": "tradingview_btc_chart",
+          "autosize": true,
+          "symbol": "BYBIT:BTCUSDT",
+          "interval": "240",
+          "timezone": "Etc/UTC",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": "#0b0f14",
+          "enable_publishing": false,
+          "hide_top_toolbar": false,
+          "hide_side_toolbar": true,
+          "allow_symbol_change": false,
+          "save_image": false,
+          "withdateranges": false,
+          "studies": [
+            "Volume@tv-basicstudies",
+            "MAExp@tv-basicstudies",
+            "MAExp@tv-basicstudies"
+          ],
+          "studies_overrides": {
+            "volume.volume.color.0": "#ef5350",
+            "volume.volume.color.1": "#26a69a",
+            "volume.volume.transparency": 30,
+            "volume.volume ma.color": "#2962FF",
+            "volume.volume ma.transparency": 70,
+
+            "moving average exponential.length": 20,
+            "moving average exponential.source": "close",
+            "moving average exponential.linewidth": 2,
+            "moving average exponential.color": "#f5a623"
+          },
+          "overrides": {
+            "paneProperties.background": "#0b0f14",
+            "paneProperties.vertGridProperties.color": "rgba(255,255,255,0.04)",
+            "paneProperties.horzGridProperties.color": "rgba(255,255,255,0.04)",
+            "symbolWatermarkProperties.transparency": 90,
+            "scalesProperties.textColor": "#9db2ce",
+            "mainSeriesProperties.candleStyle.upColor": "#26a69a",
+            "mainSeriesProperties.candleStyle.downColor": "#ef5350",
+            "mainSeriesProperties.candleStyle.borderUpColor": "#26a69a",
+            "mainSeriesProperties.candleStyle.borderDownColor": "#ef5350",
+            "mainSeriesProperties.candleStyle.wickUpColor": "#26a69a",
+            "mainSeriesProperties.candleStyle.wickDownColor": "#ef5350"
+          }
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>

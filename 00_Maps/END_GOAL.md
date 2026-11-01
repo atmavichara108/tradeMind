@@ -1,10 +1,10 @@
 ---
 type: map
 domain: meta
-status: draft
+status: active
 created: 2026-11-01
 owner: владелец
-basis: формулировка SerO, подтверждение владельца ожидается
+basis: формулировка SerO, подтверждена владельцем 2026-11-01 («да»)
 ---
 # Конечная цель TradingMind (как её видит СерО)
 

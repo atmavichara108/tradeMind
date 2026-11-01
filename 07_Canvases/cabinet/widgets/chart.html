@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeMind Chart</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: #0b0f14; width: 100%; height: 100%; overflow: hidden; }
+    .wrap { width: 100vw; height: 100vh; background: #0b0f14; }
+    .tradingview-widget-container { width: 100%; height: 100%; }
+    .tradingview-widget-container__widget { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="tradingview-widget-container">
+      <div id="tv_chart" class="tradingview-widget-container__widget"></div>
+      <script src="https://s3.tradingview.com/tv.js"></script>
+      <script>
+        // Параметры из URL: ?symbol=BYBIT:BTCUSDT&interval=D&studies=atr,ema20
+        const params = new URLSearchParams(window.location.search);
+        const symbol = params.get('symbol') || 'BYBIT:BTCUSDT';
+        const interval = params.get('interval') || 'D';
+        const studiesParam = (params.get('studies') || 'volume,atr').split(',');
+
+        const studyMap = {
+          volume: "Volume@tv-basicstudies",
+          atr: "ATR@tv-basicstudies",
+          ema20: "MAExp@tv-basicstudies",
+          ema50: "MAExp@tv-basicstudies",
+          rsi: "RSI@tv-basicstudies",
+          bb:  "BB@tv-basicstudies"
+        };
+        const studies = studiesParam.map(s => studyMap[s.trim()]).filter(Boolean);
+
+        new TradingView.widget({
+          "container_id": "tv_chart",
+          "autosize": true,
+          "symbol": symbol,
+          "interval": interval,
+          "timezone": "Etc/UTC",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": "#0b0f14",
+          "enable_publishing": false,
+          "hide_top_toolbar": false,
+          "hide_side_toolbar": false,   // ВАЖНО: левая панель с инструментами рисования
+          "withdateranges": true,
+          "allow_symbol_change": true,
+          "save_image": true,
+          "studies": studies,
+          "overrides": {
+            "paneProperties.background": "#0b0f14",
+            "paneProperties.vertGridProperties.color": "rgba(255,255,255,0.04)",
+            "paneProperties.horzGridProperties.color": "rgba(255,255,255,0.04)",
+            "scalesProperties.textColor": "#9db2ce",
+            "mainSeriesProperties.candleStyle.upColor": "#26a69a",
+            "mainSeriesProperties.candleStyle.downColor": "#ef5350",
+            "mainSeriesProperties.candleStyle.borderUpColor": "#26a69a",
+            "mainSeriesProperties.candleStyle.borderDownColor": "#ef5350",
+            "mainSeriesProperties.candleStyle.wickUpColor": "#26a69a",
+            "mainSeriesProperties.candleStyle.wickDownColor": "#ef5350"
+          }
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>
