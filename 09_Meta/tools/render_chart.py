@@ -52,6 +52,7 @@ def main():
     pos = [a for a in args if not a.startswith("--")]
     symbol, interval, limit = pos[0], pos[1], int(pos[2])
     kl = fetch(symbol, interval, limit)
+    trends = [args[args.index(tr) + 1] for tr in args if tr.startswith("--trend")]
     if "--from" in args:  # отсечь листинговые шпильки: --from YYYY-MM-DD
         import datetime
         d0 = datetime.date.fromisoformat(args[args.index("--from") + 1])
@@ -96,6 +97,22 @@ def main():
                 dr.line([(xx, y(p)), (min(xx + 4, W - M_R), y(p))],
                         fill="#5b9cf6", width=2)
             dr.text((W - M_R + 45, y(p) - 10), lab or str(p), fill="#5b9cf6", font=f)
+    import datetime as _dt
+    for spec in trends:  # формат: ДД.ММ.ГГГГ:ЦЕНА,ДД.ММ.ГГГГ:ЦЕНА[:ПОДПИСЬ]
+        pair, _, lab = spec.partition("@")
+        a, b = pair.split("|")
+        d1, p1 = a.rsplit(":", 1)
+        d2, p2 = b.rsplit(":", 1)
+        p1, p2 = float(p1), float(p2)
+        lab = lab or "наклон"
+        def xts(s):
+            dd = _dt.datetime.strptime(s, "%d.%m.%Y").replace(tzinfo=_dt.timezone.utc)
+            ts = dd.timestamp() * 1000
+            return M_L + min(max((ts - kl[0][0]) / (kl[-1][0] - kl[0][0]), 0), 1) \
+                * (W - M_L - M_R)
+        x1, x2 = xts(d1), xts(d2)
+        dr.line([(x1, y(p1)), (x2, y(p2))], fill="#e040fb", width=2)
+        dr.text((x2 + 6, y(p2) - 10), lab, fill="#e040fb", font=f)
     for frac in (4, 2):  # сетка-ориентир по средней
         p = lo + (hi - lo) * frac / 8
         dr.line([(M_L, y(p)), (W - M_R, y(p))], fill="#2a2e39", width=1)
