@@ -17,7 +17,7 @@ import urllib.request
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1600, 900
-M_L, M_R, M_T, M_B = 40, 150, 60, 40
+M_L, M_R, M_T, M_B = 40, 260, 60, 40
 UP, DN, BG, FG = "#26a69a", "#ef5350", "#131722", "#b2b5be"
 
 
