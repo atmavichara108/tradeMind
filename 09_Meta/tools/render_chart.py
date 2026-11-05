@@ -52,6 +52,11 @@ def main():
     pos = [a for a in args if not a.startswith("--")]
     symbol, interval, limit = pos[0], pos[1], int(pos[2])
     kl = fetch(symbol, interval, limit)
+    if "--from" in args:  # отсечь листинговые шпильки: --from YYYY-MM-DD
+        import datetime
+        d0 = datetime.date.fromisoformat(args[args.index("--from") + 1])
+        kl = [k for k in kl
+              if datetime.datetime.fromtimestamp(k[0]/1000, datetime.UTC).date() >= d0]
     if not kl:
         sys.exit("нет данных")
     lo = min(k[3] for k in kl)
